@@ -6,8 +6,6 @@ import ast.IdTree;
 import ast.IntTree;
 import ast.MultOpTree;
 import ast.RelOpTree;
-import ast.FloatTree;
-import ast.VoidTree;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -181,16 +179,6 @@ public class DrawVisitor extends ASTVisitor {
 
   public Object visitIntTree( AST t ) {
     draw( "Int: "+((IntTree)t).getSymbol().toString(), t );
-    return null;
-  }
-
-  public Object visitFloatTree( AST t ) {
-    draw( "Float: "+((FloatTree)t).getSymbol().toString(), t );
-    return null;
-  }
-
-  public Object visitVoidTree( AST t ) {
-    draw( "Void: "+((VoidTree)t).getSymbol().toString(), t );
     return null;
   }
 

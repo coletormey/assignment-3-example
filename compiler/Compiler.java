@@ -27,8 +27,13 @@ public class Compiler {
       AST ast = parser.execute();
 
       System.out.println( "---------------AST-------------" );
-      PrintVisitor printVisitor = new PrintVisitor();
-      ast.accept( printVisitor );
+      // PrintVisitor printVisitor = new PrintVisitor();
+      // ast.accept( printVisitor );
+      CountVisitor counter = new CountVisitor();
+      ast.accept( counter );
+
+      DrawVisitor visitor = new DrawVisitor( counter.getCount() );
+      ast.accept( visitor );
 
 /*  COMMENT CODE FROM HERE UNTIL THE CATCH CLAUSE WHEN TESTING PARSER */
       // Constrainer con = new Constrainer(t,parser);
