@@ -8,6 +8,12 @@ import visitor.*;
 
 import java.io.File;
 import javax.imageio.ImageIO;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import java.awt.Dimension;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import javax.swing.ImageIcon;
 
 /**
  *  The Compiler class contains the main program for compiling
@@ -44,6 +50,28 @@ public class Compiler {
       } catch( Exception e ) {
         System.out.println( "Error in saving image: " + e.getMessage() );
       }
+
+      final JFrame f = new JFrame();
+      f.addWindowListener( new WindowAdapter() {
+        @Override
+        public void windowClosing(WindowEvent e) {
+          f.dispose();
+          System.exit( 0 );
+        }
+      });
+
+      JLabel imagelabel = new JLabel( new ImageIcon( visitor.getImage() ));
+      f.add( "Center", imagelabel );
+      f.pack();
+      f.setSize(
+        new Dimension(
+          visitor.getImage().getWidth() + 30,
+          visitor.getImage().getHeight() + 40
+        )
+      );
+      f.setVisible( true );
+      f.setResizable( false );
+      f.repaint();
 
 /*  COMMENT CODE FROM HERE UNTIL THE CATCH CLAUSE WHEN TESTING PARSER */
       // Constrainer con = new Constrainer(t,parser);
