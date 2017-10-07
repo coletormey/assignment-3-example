@@ -6,6 +6,9 @@ import constrain.Constrainer;
 import codegen.*;
 import visitor.*;
 
+import java.io.File;
+import javax.imageio.ImageIO;
+
 /**
  *  The Compiler class contains the main program for compiling
  *  a source program to bytecodes
@@ -34,6 +37,13 @@ public class Compiler {
 
       DrawVisitor visitor = new DrawVisitor( counter.getCount() );
       ast.accept( visitor );
+
+      try {
+        File imagefile = new File( sourceFile + ".png" );
+        ImageIO.write( visitor.getImage(), "png", imagefile );
+      } catch( Exception e ) {
+        System.out.println( "Error in saving image: " + e.getMessage() );
+      }
 
 /*  COMMENT CODE FROM HERE UNTIL THE CATCH CLAUSE WHEN TESTING PARSER */
       // Constrainer con = new Constrainer(t,parser);
